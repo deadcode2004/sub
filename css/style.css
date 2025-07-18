@@ -1,0 +1,387 @@
+/* General Styles */
+
+.stats-card h5 {
+    color: white !important;
+}
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --dark-bg: #1a1d21;
+    --light-bg: #272c33;
+    --text-color: #f8f9fa;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    opacity: 1; /* Ensure content is visible */
+    transition: opacity 0.5s ease-in-out; /* Smooth fade-in transition */
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+/* Sidebar Styles */
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: var(--light-bg);
+    color: #fff;
+    transition: all 0.3s;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    z-index: 999;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+#sidebar.active {
+    margin-right: -250px;
+}
+
+.sidebar-header {
+    padding: 20px;
+    background: var(--light-bg);
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.sidebar-header h3 {
+    color: #fff;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.sidebar-header img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#sidebar ul li a {
+    padding: 15px 20px;
+    font-size: 1.1em;
+    display: block;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+#sidebar ul li a:hover {
+    color: var(--primary-color);
+    background: var(--dark-bg);
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background: var(--primary-color);
+}
+
+#sidebar ul li a i {
+    margin-left: 10px;
+}
+
+.logout-btn-container {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* يمكنك إضافة أنماط مخصصة هنا */
+
+/* أنماط مخصصة لنافذة تجديد الاشتراك */
+#renewalModal .modal-body,
+#renewalModal .modal-header .modal-title,
+#renewalModal .modal-body .form-label,
+#renewalModal .modal-body legend {
+    color: #212529 !important; /* Set text color to dark black */
+}
+
+#renewalModal #renewalCustomerName {
+     color: #0d6efd; /* Keep customer name in primary color for emphasis */
+}
+
+
+
+/* حل نهائي لمشكلة تموضع زر الإغلاق في النافذة المنبثقة */
+#renewalModal .modal-header {
+    position: relative;
+}
+
+#renewalModal .modal-header .btn-close {
+    position: absolute;
+    left: 1.5rem; /* تعديل المسافة حسب الحاجة */
+    top: 1.5rem;  /* تعديل المسافة حسب الحاجة */
+}
+
+/* نهاية الأنماط المخصصة */
+
+/* أنماط كارت معلومات العميل في صفحة الحضور */
+#customerInfo h4 {
+    color: #0d6efd; /* لون Bootstrap الأساسي الأزرق */
+    font-weight: bold;
+}
+
+#customerInfo p {
+    color: #212529; /* لون Bootstrap الافتراضي للنص (أسود داكن) */
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* تغيير لون عنوان صفحة الحضور */
+#page-title {
+    color: #212529; /* لون أسود داكن */
+}
+
+/* Page Content Styles */
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: margin-right 0.3s;
+    margin-right: 250px;
+}
+
+#sidebar.active + #content {
+    margin-right: 0;
+}
+
+/* Navbar Toggle Button */
+.navbar-toggler-container {
+    display: flex;
+    align-items: center;
+}
+
+#sidebarCollapse {
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 0 15px;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+#sidebarCollapse:hover {
+    color: var(--primary-color);
+}
+
+/* Dashboard Cards */
+.stats-card {
+    background: var(--light-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.stats-card .icon {
+    font-size: 3rem;
+    margin-left: 20px;
+    opacity: 0.8;
+}
+
+.stats-card .card-body {
+    padding: 0;
+}
+
+.stats-card h5 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 5px;
+    color: #adb5bd;
+}
+
+.stats-card .display-4 {
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Main Function Cards */
+.dashboard-main-card {
+    background: var(--light-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.dashboard-main-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-main-card .card-body {
+    padding: 30px 20px;
+}
+
+.dashboard-main-card i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.dashboard-main-card .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+/* Light Card Customization */
+.dashboard-main-card.attendance-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+    padding: 1rem;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.attendance-table td {
+    padding: 1rem;
+    vertical-align: middle;
+    font-size: 0.95rem;
+}
+
+.attendance-table td:first-child {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.attendance-table td:nth-child(2) {
+    color: #6c757d;
+    font-family: 'Cairo', sans-serif;
+    direction: ltr;
+    text-align: left;
+    padding-left: 1.5rem;
+    white-space: nowrap;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.attendance-table td.status-حاضر {
+    color: #28a745;
+    font-weight: 700;
+}
+
+.attendance-table td.status-غائب {
+    color: #dc3545;
+    font-weight: 700;
+}
+
+.dashboard-main-card.card-light {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+}
+
+.dashboard-main-card.card-light .card-title,
+.dashboard-main-card.card-light .card-text {
+    color: #212529 !important; /* Ensure text is dark */
+}
+
+.dashboard-main-card.card-light i {
+    color: #0d6efd; /* Keep icon color as primary blue */
+}
+
+.dashboard-main-card.card-light:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+/* Custom styles for icon-only buttons - Absolute Centering FINAL ATTEMPT */
+.btn.btn-icon-only {
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    position: relative !important; /* Establish positioning context */
+    overflow: hidden !important;
+}
+
+.btn.btn-icon-only > i.fas.fa-eye {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    /* The 'absolute centering' trick */
+    transform: translate(-50%, -50%) !important;
+    font-size: 18px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+}
+
+.dashboard-main-card .card-text {
+    color: #adb5bd;
+}
+
+.dashboard-main-card .btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+}
+
+.disabled-card {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* RTL Adjustments */
+body[dir="rtl"] #sidebar ul li a i {
+    margin-left: 0;
+    margin-right: 10px; 
+}
+
+body[dir="rtl"] .stats-card .icon {
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-right: -250px;
+    }
+    #sidebar.active {
+        margin-right: 0;
+    }
+    #content {
+        margin-right: 0;
+    }
+    #sidebar.active + #content {
+        margin-right: 0; 
+    }
+    .navbar-toggler-container{
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        z-index: 1000;
+    }
+}
+
+/* 
+  Definitive Global Fix for Modal Close Buttons (RTL)
+*/
+.modal-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}

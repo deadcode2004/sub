@@ -1,0 +1,110 @@
+#content {
+    background-color: #0d1117;
+    background-image: 
+        radial-gradient(at 0% 100%, hsla(253, 80%, 15%, 0.4) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, hsla(283, 80%, 20%, 0.4) 0px, transparent 50%),
+        radial-gradient(at 20% 20%, hsla(212, 80%, 25%, 0.4) 0px, transparent 50%);
+    min-height: 100vh;
+}
+
+.calculator-container {
+    max-width: 360px;
+    margin: 2rem auto;
+    background: rgba(30, 33, 38, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+}
+
+.display-section {
+    color: #ffffff;
+    text-align: right;
+    padding: 15px;
+    margin-bottom: 15px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: rgba(20, 22, 25, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.history {
+    font-size: 0.9rem;
+    color: #b0b8c4;
+    height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.result {
+    font-size: 2.8rem;
+    font-weight: bold;
+    word-wrap: break-word;
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.calc-btn {
+    font-size: 1.3rem;
+    padding: 16px;
+    border-radius: 14px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calc-btn:active {
+    transform: scale(0.96);
+}
+
+.btn-number {
+    background-color: rgba(60, 64, 67, 0.7);
+    color: #e8eaed;
+}
+.btn-number:hover {
+    background-color: rgba(74, 78, 82, 0.8);
+}
+
+.btn-operator, .btn-memory {
+    background-color: rgba(95, 99, 104, 0.7);
+    color: #e8eaed;
+}
+.btn-operator:hover, .btn-memory:hover {
+    background-color: rgba(108, 113, 118, 0.8);
+}
+
+.btn-equal {
+    background-color: rgba(66, 133, 244, 0.8);
+    color: #ffffff;
+    grid-column: span 2;
+}
+.btn-equal:hover {
+    background-color: rgba(90, 149, 245, 0.9);
+}
+
+.btn-clear {
+    background-color: rgba(157, 76, 76, 0.7);
+    color: #f7d1d6;
+}
+.btn-clear:hover {
+    background-color: rgba(168, 90, 90, 0.8);
+}
+
+.fa-backspace {
+    font-size: 1.2rem;
+}

@@ -1,0 +1,50 @@
+/* CSS for debts.html */
+
+#content {
+    background-color: #f8f9fa; /* Fallback color */
+    background-image: linear-gradient(135deg, #fdf8f2 0%, #e9ecef 100%);
+    min-height: 100vh;
+}
+
+/* Styling for the Payment Modal in debts.html */
+#paymentModal .modal-content {
+    border-radius: 0.75rem;
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+#paymentModal .modal-header {
+    background-color: #e9ecef; /* A light grey that matches the background gradient */
+    border-bottom: 1px solid #dee2e6;
+    display: flex; /* Ensure flex behavior */
+    justify-content: space-between; /* Space out title and button */
+    align-items: center;
+}
+
+/* Set all relevant text in the modal to black */
+#paymentModal .modal-title,
+#paymentModal .modal-body .form-label,
+#paymentModal .modal-body p,
+#paymentCustomerName { /* Target the customer name span specifically */
+    color: #000000;
+    font-weight: 600;
+}
+
+/* Keep the actual amount value normal weight */
+#paymentModal .modal-body p span {
+    font-weight: normal;
+}
+
+#paymentModal .modal-body {
+    background-color: #ffffff;
+}
+
+#paymentModal .modal-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Position the close button to the far left */
+#paymentModal .modal-header .btn-close {
+    margin: 0; /* Override Bootstrap's default margin */
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/auth-guard.js"></script>
+    <title>سجل الحضور - نظام إدارة الجيم</title>
+    <link rel="icon" type="image/png" id="site-favicon" href="">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/attendance.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img src="" alt="شعار النظام" class="site-logo">
+                <h3>نظام إدارة الجيم</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a></li>
+                <li><a href="customer-transactions.html"><i class="fas fa-dollar-sign"></i> السجل المالي للعملاء</a></li>
+                <li><a href="add-customer.html"><i class="fas fa-user-plus"></i> إضافة عميل</a></li>
+                <li><a href="calculator.html"><i class="fas fa-calculator"></i> الآلة الحاسبة</a></li>
+                <li><a href="manage-customers.html"><i class="fas fa-users"></i> إدارة العملاء</a></li>
+                <li><a href="expired-subscriptions.html"><i class="fas fa-user-clock"></i> الاشتراكات المنتهية</a></li>
+                <li><a href="accounting.html"><i class="fas fa-file-invoice-dollar"></i> المحاسبة</a></li>
+                <li><a href="debts.html"><i class="fas fa-hand-holding-usd"></i> المديونيات</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-line"></i> التقارير</a></li>
+                <li class="active"><a href="attendance.html"><i class="fas fa-clipboard-user"></i> سجل الحضور </a></li>
+                <li><a href="barcode-generator.html"><i class="fas fa-barcode"></i> مولد الباركودات</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <a href="#" id="logoutBtn" class="btn btn-danger w-100">
+                    <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                </a>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-dark">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="d-flex align-items-center">
+                        <img src="" alt="شعار النظام" width="30" height="30" class="me-3 site-logo">
+                        <a class="navbar-brand" href="dashboard.html">نظام إدارة الجيم</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-fluid mt-4">
+                <div class="attendance-container">
+                    <h1 class="text-center my-4" id="page-title">تسجيل الحضور والغياب</h1>
+
+                    <div class="barcode-input-group mb-3">
+                        <input type="text" id="barcodeInput" class="form-control" placeholder="ادخل رقم العضوية أو امسح الباركود">
+                        <div id="scanStatus" class="alert alert-info mt-2">
+                            جاهز لمسح الباركود...
+                        </div>
+                    </div>
+
+                    <div id="customerInfo" class="customer-info mt-4 p-3 border rounded" style="display: none;">
+                        <h4>معلومات العميل</h4>
+                        <p id="customerName"></p>
+                        <p id="customerNumber"></p>
+                        <p id="subscriptionStatus"></p>
+                        <p id="attendanceTime"></p>
+                    </div>
+
+                    <div class="table-controls my-3 d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center gap-2">
+                            <label for="dateFilter" class="form-label mb-0">عرض سجلات تاريخ:</label>
+                            <input type="date" id="dateFilter" class="form-control" style="width: auto;">
+                        </div>
+                        <button id="deleteAllBtn" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash-alt"></i> حذف سجلات اليوم
+                        </button>
+                    </div>
+
+                    <div class="table-responsive mt-4">
+                        <table class="table table-striped table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>اسم العميل</th>
+                                    <th>التاريخ والوقت</th>
+                                    <th>الحالة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendanceTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/secure-storage.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/attendance.js"></script>
+    <script src="js/global-settings.js"></script>
+</body>
+</html>

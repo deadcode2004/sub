@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/auth-guard.js"></script>
+    <title>مولد الباركودات - نظام إدارة الجيم</title>
+    <link rel="icon" type="image/png" id="site-favicon" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <nav id="sidebar" class="active">
+            <div class="sidebar-header">
+                <img src="" alt="شعار النظام" class="site-logo">
+                <h3>نظام الجيم</h3>
+            </div>
+            <ul class="list-unstyled components">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a></li>
+                <li><a href="customer-transactions.html"><i class="fas fa-dollar-sign"></i> السجل المالي للعملاء</a></li>
+                <li><a href="add-customer.html"><i class="fas fa-user-plus"></i> إضافة عميل</a></li>
+                <li><a href="calculator.html"><i class="fas fa-calculator"></i> الآلة الحاسبة</a></li>
+                <li><a href="manage-customers.html"><i class="fas fa-users"></i> إدارة العملاء</a></li>
+                <li><a href="expired-subscriptions.html"><i class="fas fa-user-clock"></i> الاشتراكات المنتهية</a></li>
+                <li><a href="accounting.html"><i class="fas fa-file-invoice-dollar"></i> المحاسبة</a></li>
+                <li><a href="debts.html"><i class="fas fa-hand-holding-usd"></i> المديونيات</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-line"></i> التقارير</a></li>
+                <li><a href="attendance.html"><i class="fas fa-clipboard-user"></i> سجل الحضور </a></li>
+                <li class="active"><a href="barcode-generator.html"><i class="fas fa-barcode"></i> مولد الباركودات</a></li>
+            </ul>
+            <div class="logout-btn-container">
+                <a href="#" id="logoutBtn" class="btn btn-danger w-100">تسجيل الخروج</a>
+            </div>
+        </nav>
+
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center">
+                        <div class="me-auto">
+                            <button type="button" id="sidebarCollapse" class="btn btn-dark">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <img src="" alt="شعار النظام" width="30" height="30" class="me-3 site-logo">
+                            <a class="navbar-brand" href="dashboard.html">نظام الجيم</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <main class="container-fluid mt-4">
+                <div class="card bg-dark text-white">
+                    <div class="card-header">
+                        <h3><i class="fas fa-barcode"></i> مولد الباركودات للطباعة</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">هذه الأداة تسمح لك بإنشاء ملفات PDF تحتوي على باركودات فريدة لطباعتها على كروت العملاء. يرجى الإنتباه أن إنشاء عدد كبير جدًا من الباركودات في المرة الواحدة قد يستهلك موارد الجهاز.</p>
+                        <form id="generatorForm">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="prefix" class="form-label">النص السابق للباركود (اختياري)</label>
+                                    <input type="text" class="form-control" id="prefix" value="GYM-">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="startNumber" class="form-label">رقم البدء</label>
+                                    <input type="number" class="form-control" id="startNumber" value="1" min="1">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="quantity" class="form-label">الكمية (الحد الأقصى 5000)</label>
+                                    <input type="number" class="form-control" id="quantity" value="100" min="1" max="5000">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100"><i class="fas fa-cogs"></i> إنشاء ملف PDF</button>
+                        </form>
+                        <div id="loadingIndicator" class="d-none text-center mt-3">
+                            <div class="spinner-border text-light" role="status">
+                                <span class="visually-hidden">جاري الإنشاء...</span>
+                            </div>
+                            <p>جاري إنشاء الباركودات، قد تستغرق العملية بعض الوقت...</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="js/secure-storage.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/barcode-generator.js"></script>
+    <script src="js/global-settings.js"></script>
+</body>
+</html>

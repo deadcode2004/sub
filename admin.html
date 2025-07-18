@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المسؤول</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-3.2 8.7-11.4 14.6-20.8 14.6h-86.5c-3.4 9.2-7.7 18-12.8 26.3l16.7 89.2c3.2 17.1-8.5 33.2-25.6 36.4c-17.1 3.2-33.2-8.5-36.4-25.6l-16.7-89.2c-7.2-1.7-14.3-3.8-21.2-6.2c-7.2-2.5-14.6-5.4-21.8-8.5c-6.2-2.6-12.5-5.4-18.7-8.4c-1.2-.6-2.4-1.2-3.6-1.8c-6.1-3-12.3-6-18.4-9c-1.2-.6-2.4-1.2-3.6-1.8c-6.1-3-12.3-6-18.4-9c-1.2-.6-2.4-1.2-3.6-1.8c-6.1-3-12.3-6-18.4-9c-1.2-.6-2.4-1.2-3.6-1.8c-6.1-3-12.3-6-18.4-9c-1.2-.6-2.4-1.2-3.6-1.8c-6.1-3-12.3-6-18.4-9c-1.2-.6-2.4-1.2-3.6-1.8c-6.1-3-12.3-6-18.4-9c-7.2-3.8-14.6-7.8-21.8-11.9c-5.1-2.8-10.2-5.8-15.3-8.8l-16.7 89.2c-3.2 17.1-19.3 28.8-36.4 25.6c-17.1-3.2-28.8-19.3-25.6-36.4l16.7-89.2c-5.1-8.3-9.4-17.1-12.8-26.3H32.9c-9.4 0-17.6-5.9-20.8-14.6c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C60.6 273.1 60 264.6 60 256s.6-17.1 1.7-25.4L18.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c3.2-8.7 11.4-14.6 20.8-14.6h86.5c3.4-9.2 7.7-18 12.8-26.3L115.4 36.4c-3.2-17.1 8.5-33.2 25.6-36.4c17.1-3.2 33.2 8.5 36.4 25.6l16.7 89.2c7.2 1.7 14.3 3.8 21.2 6.2c7.2 2.5 14.6 5.4 21.8 8.5c6.2 2.6 12.5 5.4 18.7 8.4c1.2 .6 2.4 1.2 3.6 1.8c6.1 3 12.3 6 18.4 9c1.2 .6 2.4 1.2 3.6 1.8c6.1 3 12.3 6 18.4 9c1.2 .6 2.4 1.2 3.6 1.8c6.1 3 12.3 6 18.4 9c1.2 .6 2.4 1.2 3.6 1.8c6.1 3 12.3 6 18.4 9c1.2 .6 2.4 1.2 3.6 1.8c6.1 3 12.3 6 18.4 9c1.2 .6 2.4 1.2 3.6 1.8c6.1 3 12.3 6 18.4 9c7.2 3.8 14.6 7.8 21.8 11.9c5.1 2.8 10.2 5.8 15.3 8.8l16.7-89.2c3.2-17.1 19.3-28.8 36.4-25.6c17.1 3.2 28.8 19.3 25.6 36.4l-16.7 89.2c5.1 8.3 9.4 17.1 12.8 26.3h86.5c9.4 0 17.6 5.9 20.8 14.6zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z'/%3E%3C/svg%3E">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 700px;
+            margin-top: 50px;
+        }
+        .card {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Password Protection Modal -->
+    <div class="modal fade" id="passwordModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordModalLabel"><i class="fas fa-lock"></i> مطلوب التحقق</h5>
+                </div>
+                <div class="modal-body">
+                    <p>يجب إدخال كلمة المرور للوصول إلى صفحة الإدارة.</p>
+                    <form id="passwordProtectForm">
+                        <div class="mb-3">
+                            <label for="adminPassword" class="form-label">كلمة المرور</label>
+                            <input type="password" class="form-control" id="adminPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">دخول</button>
+                    </form>
+                    <div id="passwordError" class="text-danger mt-2" style="display: none;">كلمة المرور غير صحيحة.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (Initially Hidden) -->
+    <div id="mainContent" style="display: none;">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2><i class="fas fa-cogs"></i> لوحة تحكم المسؤول</h2>
+            <p class="text-muted">إدارة الإعدادات الأساسية للنظام</p>
+        </div>
+
+        <!-- Login Credentials Card -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-user-shield"></i> تحديث بيانات تسجيل الدخول
+            </div>
+            <div class="card-body">
+                <form id="credentialsForm">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">اسم المستخدم (البريد الإلكتروني)</label>
+                        <input type="email" class="form-control" id="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">كلمة المرور الجديدة</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> حفظ البيانات</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Logo Upload Card -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-image"></i> تحديث شعار النظام
+            </div>
+            <div class="card-body">
+                <form id="logoForm">
+                    <div class="mb-3">
+                        <label for="logoUpload" class="form-label">اختر ملف الشعار</label>
+                        <input class="form-control" type="file" id="logoUpload" accept="image/*">
+                    </div>
+                    <div class="mb-3 text-center">
+                        <p>المعاينة الحالية:</p>
+                        <img id="logoPreview" src="" alt="الشعار الحالي" class="img-fluid" style="max-height: 100px; display: none;">
+                    </div>
+                    <button type="submit" class="btn btn-success"><i class="fas fa-upload"></i> تحديث الشعار</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Archive Password Card -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-key"></i> إدارة كلمة مرور الأرشيف
+            </div>
+            <div class="card-body">
+                <form id="archivePasswordForm">
+                    <div class="mb-3">
+                        <label for="archivePassword" class="form-label">كلمة المرور الجديدة للأرشيف</label>
+                        <input type="password" class="form-control" id="archivePassword" required>
+                        <div class="form-text">أدخل كلمة مرور جديدة لحماية قسم الأرشيف.</div>
+                    </div>
+                    <button type="submit" class="btn btn-warning"><i class="fas fa-save"></i> حفظ كلمة المرور</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="alert-container"></div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="js/secure-storage.js"></script>
+    <script src="js/admin.js"></script>
+    </div> <!-- End Main Content -->
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="js/secure-storage.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

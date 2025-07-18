@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/auth-guard.js"></script>
+    <title>تعديل بيانات العميل - نظام إدارة الجيم</title>
+    <link rel="icon" type="image/png" id="site-favicon" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="active">
+            <div class="sidebar-header">
+                <img src="" alt="شعار النظام" class="site-logo">
+                <h3>نظام الجيم</h3>
+            </div>
+            <ul class="list-unstyled components">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a></li>
+                <li><a href="customer-transactions.html"><i class="fas fa-dollar-sign"></i> السجل المالي للعملاء</a></li>
+                <li><a href="add-customer.html"><i class="fas fa-user-plus"></i> إضافة عميل</a></li>
+                <li><a href="calculator.html"><i class="fas fa-calculator"></i> الآلة الحاسبة</a></li>
+                <li class="active"><a href="manage-customers.html"><i class="fas fa-users"></i> إدارة العملاء</a></li>
+                <li><a href="expired-subscriptions.html"><i class="fas fa-user-clock"></i> الاشتراكات المنتهية</a></li>
+                <li><a href="accounting.html"><i class="fas fa-file-invoice-dollar"></i> المحاسبة</a></li>
+                <li><a href="debts.html"><i class="fas fa-hand-holding-usd"></i> المديونيات</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-line"></i> التقارير</a></li>
+                <li><a href="attendance.html"><i class="fas fa-clipboard-user"></i> سجل الحضور </a></li>
+            </ul>
+            <div class="logout-btn-container">
+                <a href="#" id="logoutBtn" class="btn btn-danger w-100">تسجيل الخروج</a>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center">
+                            <div class="me-auto">
+                                <button type="button" id="sidebarCollapse" class="btn btn-dark">
+                                    <i class="fas fa-bars"></i>
+                                </button>
+                            </div>
+                            <div>
+                                <img src="" alt="شعار" width="30" height="30" class="site-logo me-3">
+                                <a class="navbar-brand" href="dashboard.html">نظام إدارة الجيم</a>
+                            </div>
+                        </div>
+                    </div>
+            </nav>
+            <div class="container mt-5 mb-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
+                <h3><i class="fas fa-edit"></i> تعديل بيانات العميل</h3>
+            </div>
+            <div class="card-body">
+                <form id="editCustomerForm">
+                    <!-- Personal Information -->
+                    <div class="mb-4">
+                        <h5><i class="fas fa-user-circle"></i> معلومات شخصية</h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">الاسم بالكامل</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">رقم الهاتف</label>
+                                <input type="tel" class="form-control" id="phone" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="dob" class="form-label">تاريخ الميلاد</label>
+                                <input type="date" class="form-control" id="dob">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="gender" class="form-label">النوع</label>
+                                <select class="form-select" id="gender">
+                                    <option value="male">ذكر</option>
+                                    <option value="female">أنثى</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subscription Information -->
+                    <div class="mb-4">
+                        <h5><i class="fas fa-calendar-alt"></i> معلومات الاشتراك</h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="subType" class="form-label">نوع الاشتراك</label>
+                                <select class="form-select" id="subType">
+                                    <option value="monthly">شهري</option>
+                                    <option value="half-monthly">نصف شهري</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="subMonths" class="form-label">مدة الاشتراك</label>
+                                <input type="number" class="form-control" id="subMonths" value="1" min="1" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="startDate" class="form-label">تاريخ بدء الاشتراك</label>
+                                <input type="date" class="form-control" id="startDate" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="endDate" class="form-label">تاريخ انتهاء الاشتراك</label>
+                                <input type="text" class="form-control" id="endDate" readonly>
+                            </div>
+                             <div class="col-12 mb-3">
+                                <p id="freeMonthsOfferInfo" class="text-success fw-bold" style="display: none;"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Last Payment Information (for reference on renewal) -->
+                    <div id="lastPaymentInfo" class="mb-4" style="display: none;">
+                        <h5><i class="fas fa-history"></i> معلومات الدفعة الأخيرة (للمراجعة)</h5>
+                        <hr>
+                        <div class="alert alert-info">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p class="mb-0"><strong>إجمالي الدفعة السابقة:</strong> <span id="lastTotalPriceRef" class="fw-bold"></span></p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="mb-0"><strong>المدفوع سابقا:</strong> <span id="lastAmountPaidRef" class="fw-bold"></span></p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="mb-0"><strong>المتبقي سابقا:</strong> <span id="lastRemainingAmountRef" class="fw-bold"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Information -->
+                    <div class="mb-4">
+                        <h5><i class="fas fa-money-bill-wave"></i> معلومات الدفع</h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="originalPrice" class="form-label">المبلغ الأصلي</label>
+                                <input type="number" class="form-control" id="originalPrice" placeholder="السعر قبل الخصم">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="discount" class="form-label">الخصم (%)</label>
+                                <input type="number" class="form-control" id="discount" value="0" min="0" max="100">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="finalPrice" class="form-label">المبلغ النهائي</label>
+                                <input type="number" class="form-control" id="finalPrice" readonly>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="amountPaid" class="form-label">المبلغ المدفوع</label>
+                                <input type="number" class="form-control" id="amountPaid">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="remainingAmount" class="form-label">المبلغ المتبقي</label>
+                                <input type="number" class="form-control" id="remainingAmount" readonly>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="paymentMethod" class="form-label">طريقة الدفع</label>
+                                <select class="form-select" id="paymentMethod">
+                                    <option value="cash">نقدي</option>
+                                    <option value="vodafone_cash">فودافون كاش</option>
+                                    <option value="fawry">فوري</option>
+                                    <option value="bank_transfer">تحويل بنكي</option>
+                                    <option value="instapay">انستا باي</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="paymentDate" class="form-label">تاريخ الدفع</label>
+                                <input type="date" class="form-control" id="paymentDate">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="paymentStatus" class="form-label">حالة الدفع</label>
+                                <input type="text" class="form-control" id="paymentStatus" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-3">
+                        <button type="submit" class="btn btn-success px-4 py-2"><i class="fas fa-save me-3"></i>حفظ التعديلات</button>
+                        <a href="manage-customers.html" class="btn btn-secondary px-4 py-2"><i class="fas fa-times me-3"></i>إلغاء</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" defer></script>
+    <script src="js/secure-storage.js" defer></script>
+
+    <script src="js/edit-customer.js" defer></script>
+    <script src="js/global-settings.js" defer></script>
+
+    <!-- Script for Sidebar Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarCollapse = document.getElementById('sidebarCollapse');
+            if (sidebarCollapse) {
+                sidebarCollapse.addEventListener('click', function() {
+                    document.getElementById('sidebar').classList.toggle('active');
+                    document.getElementById('content').classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

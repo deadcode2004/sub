@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/auth-guard.js"></script>
+    <title>لوحة التحكم - نظام إدارة الجيم</title>
+    <link rel="icon" type="image/png" id="site-favicon" href="">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Move modal close button to the far left */
+        .modal-header .btn-close {
+            margin-right: auto;
+            margin-left: 0; /* Ensure no extra left margin in RTL */
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img src="" alt="شعار النظام" class="site-logo">
+                <h3>نظام الجيم</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a></li>
+                <li><a href="customer-transactions.html"><i class="fas fa-dollar-sign"></i> السجل المالي للعملاء</a></li>
+                <li><a href="add-customer.html"><i class="fas fa-user-plus"></i> إضافة عميل</a></li>
+                <li><a href="calculator.html"><i class="fas fa-calculator"></i> الآلة الحاسبة</a></li>
+                <li><a href="manage-customers.html"><i class="fas fa-users"></i> إدارة العملاء</a></li>
+                <li><a href="expired-subscriptions.html"><i class="fas fa-user-clock"></i> الاشتراكات المنتهية</a></li>
+                <li><a href="accounting.html"><i class="fas fa-file-invoice-dollar"></i> المحاسبة</a></li>
+                <li><a href="debts.html"><i class="fas fa-hand-holding-usd"></i> المديونيات</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-line"></i> التقارير</a></li>
+                <li><a href="attendance.html"><i class="fas fa-clipboard-user"></i> سجل الحضور </a></li>
+                <li><a href="barcode-generator.html"><i class="fas fa-barcode"></i> مولد الباركودات</a></li>
+                <li><a href="absences.html"><i class="fas fa-user-slash"></i> سجل الغياب </a></li>
+            </ul>
+
+            <div class="logout-btn-container">
+                 <a href="#" id="logoutBtn" class="btn btn-danger w-100">تسجيل الخروج</a>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+                <div class="container-fluid">
+                    <div class="navbar-toggler-container">
+                        <button type="button" id="sidebarCollapse" class="btn">
+                            <i class="fas fa-align-right"></i>
+                        </button>
+                        <h5 class="ms-3 my-0 d-none d-md-block">لوحة التحكم الرئيسية</h5>
+                    </div>
+                </div>
+            </nav>
+
+            <main class="container-fluid mt-4">
+                <!-- Statistics Cards -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-6 col-xl-3">
+                        <div class="stats-card text-white">
+                            <div class="icon" style="color: #0d6efd;"><i class="fas fa-users"></i></div>
+                            <div class="card-body">
+                                <h5>إجمالي العملاء</h5>
+                                <h3 class="display-4" id="totalCustomers">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="stats-card text-white">
+                            <div class="icon" style="color: #198754;"><i class="fas fa-user-check"></i></div>
+                            <div class="card-body">
+                                <h5>الاشتراكات النشطة</h5>
+                                <h3 class="display-4" id="activeSubscriptions">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="stats-card text-white">
+                            <div class="icon" style="color: #ffc107;"><i class="fas fa-user-clock"></i></div>
+                            <div class="card-body">
+                                <h5>تنتهي قريباً</h5>
+                                <h3 class="display-4" id="expiringSoon">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="stats-card text-white">
+                            <div class="icon" style="color: #dc3545;"><i class="fas fa-user-times"></i></div>
+                            <div class="card-body">
+                                <h5>الاشتراكات المنتهية</h5>
+                                <h3 class="display-4" id="expiredSubscriptions">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="stats-card text-white">
+                            <div class="icon" style="color: #198754;"><i class="fas fa-user-check"></i></div>
+                            <div class="card-body">
+                                <h5>الحضور اليومي</h5>
+                                <h3 class="display-4" id="todayAttendance">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <a href="absences.html" class="text-decoration-none">
+                            <div class="stats-card text-white">
+                                <div class="icon" style="color: #dc3545;"><i class="fas fa-user-times"></i></div>
+                                <div class="card-body">
+                                    <h5>الغياب اليومي</h5>
+                                    <h3 class="display-4" id="todayAbsences">0</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="stats-card text-white">
+                            <div class="icon" style="color: #0dcaf0;"><i class="fas fa-sync-alt"></i></div>
+                            <div class="card-body">
+                                <h5>تجديد الاشتراكات</h5>
+                                <h3 class="display-4" id="renewedSubscriptions">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="stats-card text-white">
+                            <div class="icon" style="color: #6c757d;"><i class="fas fa-archive"></i></div>
+                            <div class="card-body">
+                                <h5>أرشيف العملاء</h5>
+                                <h3 class="display-4" id="archivedCustomers">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Main Function Cards -->
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <a href="add-customer.html" class="text-decoration-none">
+                            <div class="dashboard-main-card h-100">
+                                <div class="card-body">
+                                    <i class="fas fa-user-plus"></i>
+                                    <h5 class="card-title">إضافة عميل جديد</h5>
+                                    <p class="card-text">إدخال بيانات عميل جديد في النظام.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <a href="manage-customers.html" class="text-decoration-none">
+                            <div class="dashboard-main-card h-100">
+                                <div class="card-body">
+                                    <i class="fas fa-users"></i>
+                                    <h5 class="card-title">إدارة العملاء</h5>
+                                    <p class="card-text">عرض وتعديل بيانات العملاء الحاليين.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-user-clock fa-3x text-warning mb-3"></i>
+                                <h5 class="card-title">تجديد الاشتراكات</h5>
+                                <p class="card-text">عرض وتجديد الاشتراكات المنتهية أو التي على وشك الانتهاء.</p>
+                                <a href="expired-subscriptions.html" class="btn btn-warning">الانتقال</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reports Card -->
+                    <div class="col-lg-4 col-md-6">
+                        <a href="reports.html" class="text-decoration-none">
+                            <div class="dashboard-main-card h-100">
+                                <div class="card-body">
+                                    <i class="fas fa-chart-line"></i>
+                                    <h5 class="card-title">التقارير</h5>
+                                    <p class="card-text">عرض وتحليل البيانات المالية والاشتراكات.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Customer Archive Card -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="dashboard-main-card h-100">
+                            <div class="card-body">
+                                <i class="fas fa-archive text-warning"></i>
+                                <h5 class="card-title">أرشيف العملاء</h5>
+                                <p class="card-text">عرض البيانات الأساسية للعملاء المحفوظة بشكل دائم.</p>
+                                <button id="viewArchiveBtn" class="btn btn-warning btn-icon-only" title="عرض الأرشيف">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Management Card -->
+                    <div class="col-md-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-database fa-3x text-info mb-3"></i>
+                                <h5 class="card-title">إدارة البيانات</h5>
+                                <p class="card-text">حفظ، استعادة، أو إعادة تعيين بيانات النظام.</p>
+                                <div class="mt-3 d-flex justify-content-center align-items-center gap-2">
+                                    <button id="exportBtn" class="btn btn-info"><i class="fas fa-download"></i> تصدير</button>
+                                    <button id="importBtn" class="btn btn-outline-info"><i class="fas fa-upload"></i> استيراد</button>
+                                    <input type="file" id="importFile" class="d-none" accept=".json">
+                                    <button id="resetDataBtn" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i> إعادة تعيين الكل</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <a href="customer-transactions.html" class="text-decoration-none">
+                            <div class="dashboard-main-card h-100 card-light">
+                                <div class="card-body">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <h5 class="card-title">السجل المالي للعملاء</h5>
+                                    <p class="card-text">عرض وتتبع جميع مدفوعات العملاء المسجلة.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <a href="accounting.html" class="text-decoration-none">
+                            <div class="dashboard-main-card h-100 card-light">
+                                <div class="card-body">
+                                    <i class="fas fa-file-invoice-dollar"></i>
+                                    <h5 class="card-title">المحاسبة</h5>
+                                    <p class="card-text">إدارة الإيرادات والمصروفات.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <a href="attendance.html" class="text-decoration-none ">
+                            <div class="dashboard-main-card h-100 card-light">
+                                <div class="card-body">
+                                    <i class="fas fa-clipboard-user"></i>
+                                    <h5 class="card-title">سجل الحضور</h5>
+                                    <p class="card-text">تسجيل ومتابعة حضور العملاء .</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    
+    <!-- Subscription Expiry Notification Modal -->
+    <div class="modal fade" id="expiryNotificationModal" tabindex="-1" aria-labelledby="expiryNotificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-warning">
+                    <h5 class="modal-title" id="expiryNotificationModalLabel"><i class="fas fa-exclamation-triangle"></i> تنبيهات انتهاء الاشتراك</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>العملاء التاليون على وشك انتهاء اشتراكهم. الرجاء المتابعة معهم.</p>
+                    <ul id="expiringCustomersList" class="list-group list-group-flush"></ul>
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="logoutModalLabel">تأكيد تسجيل الخروج</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    هل أنت متأكد أنك تريد تسجيل الخروج؟
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="button" id="confirmLogoutBtn" class="btn btn-danger">تسجيل الخروج</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Archive Modal -->
+    <div class="modal fade" id="customerArchiveModal" tabindex="-1" aria-labelledby="customerArchiveModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="customerArchiveModalLabel">أرشيف بيانات العملاء الأساسية</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-dark table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">الاسم</th>
+                                <th scope="col">رقم الهاتف</th>
+                                <th scope="col">تاريخ الميلاد</th>
+                            </tr>
+                        </thead>
+                        <tbody id="archiveTableBody">
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer justify-content-between border-secondary">
+                    <button type="button" id="deleteAllArchiveBtn" class="btn btn-danger"><i class="fas fa-trash-alt"></i> حذف الجميع</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="js/secure-storage.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/global-settings.js"></script>
+    <!-- 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('sidebarCollapse').addEventListener('click', function () {
+                document.getElementById('sidebar').classList.toggle('active');
+                document.getElementById('content').classList.toggle('active');
+            });
+        });
+    </script> 
+    -->
+</body>
+</html>

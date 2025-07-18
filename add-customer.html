@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/auth-guard.js"></script>
+    <title>إضافة عميل جديد - نظام إدارة الجيم</title>
+    <link rel="icon" type="image/png" id="site-favicon" href="">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img src="" alt="شعار النظام" class="site-logo">
+                <h3>نظام الجيم</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a></li>
+                <li><a href="customer-transactions.html"><i class="fas fa-dollar-sign"></i> السجل المالي للعملاء</a></li>
+                <li class="active"><a href="add-customer.html"><i class="fas fa-user-plus"></i> إضافة عميل</a></li>
+                <li><a href="calculator.html"><i class="fas fa-calculator"></i> الآلة الحاسبة</a></li>
+                <li><a href="manage-customers.html"><i class="fas fa-users"></i> إدارة العملاء</a></li>
+                <li><a href="expired-subscriptions.html"><i class="fas fa-user-clock"></i> الاشتراكات المنتهية</a></li>
+                <li><a href="accounting.html"><i class="fas fa-file-invoice-dollar"></i> المحاسبة</a></li>
+                <li><a href="debts.html"><i class="fas fa-hand-holding-usd"></i> المديونيات</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-line"></i> التقارير</a></li>
+                <li><a href="attendance.html"><i class="fas fa-clipboard-user"></i> سجل الحضور </a></li>
+                <li><a href="barcode-generator.html"><i class="fas fa-barcode"></i> مولد الباركودات</a></li>
+            </ul>
+
+            <div class="logout-btn-container">
+                 <a href="#" id="logoutBtn" class="btn btn-danger w-100">تسجيل الخروج</a>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+                <div class="container-fluid">
+                    <div class="navbar-toggler-container">
+                        <button type="button" id="sidebarCollapse" class="btn">
+                            <i class="fas fa-align-right"></i>
+                        </button>
+                        <h5 class="ms-3 my-0 d-none d-md-block">إضافة عميل جديد</h5>
+                    </div>
+                </div>
+            </nav>
+
+            <main class="container-fluid mt-4">
+                <form id="addCustomerForm" class="needs-validation" novalidate>
+                    <!-- Personal Information -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>القسم 1: معلومات شخصية</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="customerId" class="form-label">رقم العضوية (امسح الباركود)</label>
+                                    <input type="text" class="form-control form-control-lg" id="customerId" placeholder="ضع المؤشر هنا وامسح الباركود ضوئياً" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="customerName" class="form-label">اسم العميل</label>
+                                    <input type="text" class="form-control" id="customerName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="customerPhone" class="form-label">رقم الهاتف</label>
+                                    <input type="tel" class="form-control" id="customerPhone" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="customerDob" class="form-label">تاريخ الميلاد</label>
+                                    <input type="date" class="form-control" id="customerDob" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="customerGender" class="form-label">النوع</label>
+                                    <select class="form-select" id="customerGender" required>
+                                        <option value="" disabled selected>اختر...</option>
+                                        <option value="male">ذكر</option>
+                                        <option value="female">أنثى</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subscription Information -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>القسم 2: معلومات الاشتراك</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                 <div class="col-md-6 mb-3">
+                                    <label for="subscriptionType" class="form-label">نوع الاشتراك</label>
+                                    <select class="form-select" id="subscriptionType" required>
+                                        <option value="" disabled selected>اختر...</option>
+                                        <option value="monthly">شهري</option>
+                                        <option value="half-monthly">نصف شهري</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="subscriptionMonths" class="form-label">مدة الاشتراك</label>
+                                    <input type="number" class="form-control" id="subscriptionMonths" value="1" min="1" required>
+                                    <div id="offer-info" class="form-text text-success fw-bold mt-2"></div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="startDate" class="form-label">تاريخ البدء</label>
+                                    <input type="date" class="form-control" id="startDate" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="endDate" class="form-label">تاريخ الانتهاء</label>
+                                    <input type="date" class="form-control" id="endDate" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Information -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>القسم 3: معلومات الدفع</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="originalPrice" class="form-label">المبلغ الأصلي</label>
+                                    <input type="number" class="form-control" id="originalPrice" placeholder="أدخل المبلغ الأساسي">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="discount" class="form-label">نسبة الخصم (%)</label>
+                                    <input type="number" class="form-control" id="discount" placeholder="%" value="0" min="0" max="100">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="finalPrice" class="form-label">المبلغ النهائي</label>
+                                    <input type="number" class="form-control" id="finalPrice" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="paidAmount" class="form-label">المبلغ المدفوع</label>
+                                    <input type="number" class="form-control" id="paidAmount">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="remainingAmount" class="form-label">المبلغ المتبقي</label>
+                                    <input type="number" class="form-control" id="remainingAmount" readonly>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="paymentMethod" class="form-label">طريقة الدفع</label>
+                                    <select class="form-select" id="paymentMethod" required>
+                                        <option value="" disabled selected>اختر...</option>
+                                        <option value="cash">نقدي</option>
+                                        <option value="vodafone_cash">فودافون كاش</option>
+                                        <option value="fawry">فوري</option>
+                                        <option value="bank_transfer">تحويل بنكي</option>
+                                        <option value="instapay">انستا باي</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="paymentDate" class="form-label">تاريخ الدفع</label>
+                                    <input type="date" class="form-control" id="paymentDate" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="paymentStatus" class="form-label">حالة الدفع</label>
+                                    <input type="text" class="form-control" id="paymentStatus" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">حفظ العميل</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="js/secure-storage.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/add-customer.js"></script>
+    <script src="js/global-settings.js"></script>
+</body>
+</html>
